@@ -3,15 +3,15 @@
 ### Acknowledgement 
 My primary source for this "Ready Reference for Java Script Programming Basics Part 1" document is the Udemy Course titled "JavaScript - Master the Fundamentals in 6 Hours" by Mosh Hamedani. https://www.udemy.com/course/javascript-basics-for-beginners/
 
-# Introduction
+## Introduction
 JavaScript (JS) forms the basis for so much of front-end web application development. While HTML covers the stylistic aspect and overall appearance of a web page, JS is generally used to control the behavior of the page as the customer interacts with the page. JS is currently the most popular and widely used programming languages in the world among programing, scripting and markup languages. There is a reason for this because it can do many wonderful things such as graphs, animations and many other web features. In this part- 1 document, I have highlighted the basic grammar or synatx in JS of some of the traditional programming concepts such as variable definitions, arrays and functions.
 
-# How to execute JavaScript (JS) code? 
+## How to execute JavaScript (JS) code? 
 JS is executed by JS engine. You can either use the JS engine available in web browsers such as Chrome (V8 engine) or install node.js. Node engine was developed by inserting JS programming language into C++. Due to Node, it became possible to execute JS program outside a browser environment. The best editor for JS is Microsoft Visual Studio Code software (VS code)- lightweight, cross platform and a powerful editor.
 
-# Programming Concepts in JS
+## Programming Concepts in JS
 
-## 1. How to define a variable and the different types of variables?
+### 1. How to define a variable and the different types of variables?
 'let' is used to label a variable while 'const' is the label for constants. JS has the following <b> primitive data types </b> - string, number, boolean, null and undefined. JS is flexible to allow dynamic typing - changing the types of variables in the course of programming. The more advanced variable types are called the <b> reference variable types </b>. 
 The following are the types of reference variables in JavaScript (JS): Objects (store variables that describe the properties of an object/person/entity), arrays (stores a list of values) and functions. 
 
