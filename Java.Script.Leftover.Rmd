@@ -1,0 +1,97 @@
+2. What can you do with it?
+(i) Initial use was to build interactive webpages 
+(ii) Today's use is to build full fledged web/mobile apps as well as real-time networking apps (what is this? chats and video streaming services), command line tools (why is this important?) or games using java script
+
+# console.error()
+# console.warn()
+# console.clear()
+alert('Hi'). # alert() and not Alert(). Output: From an embedded page at www.google.com. Makes sense since it is embedded in google.com landing page.This is a powerful feature - able to do complex things with a stroke of a few keys.
+
+# Why do people want to know this? I have no idea
+4. Difference between Java Script and ECMAScript? why does this question even arise?
+ECMAScript is specification or standard creation. JavaScript confirmed the specification. ECMA organization responsible for setting standards. First standard in 1997. Since 2015 has started annual releases in specification. In 2015, relesaed a version of specification called ESv6. It defined many new features. Did they have to specify to spur ideas of how to build Java Script. Interesting?  
+
+# Code Editor= Integrated Development Environment for churning out JS code. Why is it called editor when you compose code? Perhaps code composer?
+1. Microsoft Visual Studio Code (VS code) - why is it called this? It's like R studio. The author likes to use. R studio IDE= VS code IDE.Except R Studio does not have the term 'code' in it but lot of the attractive features as well as cross platform editors within it. Downloadable from code.visualstudio.com. 
+Lightweight, attractive, cross platform and powerful editor. "Cross Platform" is key. Has a blue ribbon. 
+2. Sublime Text
+3. and Atom
+
+MS VSCODE:
+Firewall makes software to ask to make changes to computer for installation. 
+When a code fragment is launched, it searches for a node.js binary file/node (I suppose another java script file. I wonder why searches for a binary file than a regular file). Apparently it needs node.js installed and in your PATH. Apparently every installation is accompanied by change to PATH variable so that the software becomes accessible to other programs.
+Node.js: can be downloaded from nodejs.org (see not "node.js.org") /en is optional. Just like R Studio is built on R binaries, same thing with VS code is built on node.js. node.js is also useful for installing third party libraries. Why is node.js necessary for third party libraries? Should not their respective code and underlying binaries enough? May be they need node to execute items. 
+
+#So inspect the chrome browser and go to console to run JS code.
+1. console.log('Hi'); # Note single quotes here and usage of console.log(). Why not just print('Hi');? Note semicolon in the end. You don't need semi in the end if you want to skip. perhaps it is part of the standard. Console could be because you are typing in a console and you are logging outputs. <<undefined keeps appearing in the console as well after every execution. What is undefined? I'm not using any undefined variables. I guess data types if not defined sometimes before hand, such as const or var, int or char could be a problem.
+
+Steps: 
+1. Create a folder. Drag and drop the folder in visual studio code or add it to workspace (I suppose every code editor would like a workspace next to it). The way to locate worksapce is to look for the file explorer sign. 
+2. Create a new file called index.html
+3. Just type ! and hit enter will produce boiler plate HTML code to produce a HTML document.
+4. I think all the values are under meta
+<!DOCTYPE html> # why is this necessary? why not DOCTYPE=HTML? why <!>
+<html lang=en> # html wrapper
+<head>
+      <meta charset="UTF-8"> # meta does not have an end tag, note the indentation. Why should all be in head? no idea
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"> # hyphen seprate values within a string  
+      <title>Document</title>
+</head>
+<body>
+<h1>Jesus saves but the law condems</h1> // no quotes for html text
+<script>console.log('this is where java script goes')</script>
+</body>
+</html> # note forward slash instead of a back slash because web addresses have forward slash. note // (commments) is only javascript and not html. You don't need to comment to explain anything. It just appears as text. 
+
+5. HTML will be the host for java script code. 
+Two ways to execute a html and js file - open with live server (uses the browser's java script engine) as a web app or through node (that execute only the JS file since it uses its own java script engine based on V8. Run time environemnt for java script. Why is it called run time?). IDE such as VS code is only an editor but you need a JS engine to execute or compile js.A browser does or a JS compiler like node does.
+
+Live server (generate a local browser page (open with live server just like open with a 'browser' and also uses the browser's java script engine to render the page. It renders it live and therefore called "live server". Interesting! You can also open with web browser. html code won't exactly work in a rmd because it is a mark down and all the mark up/html tags won't work.Html gives web page in the browser and js interacts with the console (js variable environment and you can type additional js commands)):
+6. Time to play with extensions. Live server is a light weight web server; this is how we are going to serve our web application. Some way to run the code. Why not use node to execute/compile our stuff. May be we will - but in the form of a web application. So we will install live server and restart visual studio code.
+7. live server opens index.html in a web page with address 127.0.0.155/index.html (VS code does not care about the location but live server cares about assigning a web address and port number of index.html file and it shows it on the web browser)
+8. Having created the first webpage/web application (you can insert h1 inside body to test it is working), you can insert java script inside html program. you need a script element as you might recall from rmd '''{r} and '''. You can also open and close the different tags in html script.
+9. The complex calculations should be further down so that atleast other parts can be displayed since the browser/liver server/java script engine parses the file from top to bottom. Also other elements get mentioned along the page that will become available for manipulation once it reaches the script section.
+10. Live server automatically refershes and reloads the script for browser to read (everytime you save anything to the script. Anything you save in that folder and the browser lights up or a blue dot appears next to the tab). Excellent feature by all html developers. 
+11. Statement to write inside script - console.log ('hello') - in other words, statement to log inside the console. Why not just log? page.log? You can find that message on the console portion of the page and not in the main page. Why is there even a console portion of the page?
+12. Separation of concerns concept: html code fragment addresses the content of the page while java script section address the behavior of the page like what should happen when you hover a mouse over a certain content (like a pop-up or something to be hidden etc.) or to make it interactive and so on. You can either do the script within the html page itself or open a separate file called index.js. In that way, the html and js portions of the web page are properly separated. There are usually multitude of js files that are bundled and served to the client. 
+
+Node approach:
+13. In order to do node, windows power shell on the directory of where js script is, so you can type "node index.js". The question is then how did node know to be there. I suppose since it is on the path function, it can be called by windows easily and then node has been programmed to be available for command line instructions. 
+14. Since IDE is like a super environment, it can also offer a terminal like R studio does so you can execute .js file using node there too.
+
+General concept of variables and constants:
+Variables:
+15. A variable/constant is a location in memomry accessed by a name. In other words, the value on that location is accessed by the name of the constnat or variable.
+16. Variable used to be declared (before ES6) using var label in front of the name. Going forward let is used to declare a variable. Very C++ like. 
+17. So do let name = 'Annamalai '; then you can call the name anywhere else in the program like log.console or alert()
+18. Variables can be named using camel notation- commonly recommended to be used in JS (firstletteroffirstword = small case and first letter of every other word = capitalized. Other convention= Capitalize first letter of every word)
+19. Interesting that variables that are only declared with the word "let" is still undefined according to JS. 
+20. So to avoid that message you need to do let firstName = 'Annamalai' and let lastName = 'Muthiah';
+21. One major difference  between variable (let X) and constant (const X) is you can't reassign the value of constant but variables you can. 
+22. Types of data that can be assigned to a variable (primitive data types): string (string literal), number literal, date, boolean literal (value = true/false - not caps), undefined and null. If variable value is not declared, js can't define the type of the variable and will therefore be  called 'undefined' type: let mysteryvariable. C++ not makes you type var but also type. In that area, JS is an improvement.
+23. You can also leave a variable blank without being undefined by stating let x = null. null is a reserved key word and x can be assigned in the future to any value. You can also clear out the value of a variable by assigning it to null which can then be assigned to a new value later.
+24. Dynamic typing. You can assign a string variable to a number and vice versa. Type is determined by the value of the variable and hence called dynamic typing. Perhaps wanted to do away with predefined types as users pick all kinds of values. So decided to do it this way.
+25. Console on the web can be cleared by using ctrl+L. I suppose people wanted a way because console was getting too long and they have to scroll up.
+
+
+# Examples of functional programming in JavaScript
+# Definition of a function below
+# note the use of the terms function and const and new. Function seems to combin the roles of class and function
+# I suppose 'this' is like self-referencing the object like 'self' in python.
+# see you have to specify data type in front of a variable such as const and var.
+# note how the variables' elements are accessed by "."
+# variables are specified by var tag in front of them.
+# There is no need to do print(x) in JS. Just X will do to output the value of the variable as in every other program.
+# I need a viable engine in Rmd (only d3 is available) to convert javascript script to ouput - important point. 
+
+# js going forward for coding in mirth and d3 and rmd going forward to document tickets. also publish software impelementation using graphics (make schematic in your notebook as you install)
+
+```{js, class.source = "jsvis1"}
+function User(name) {
+this.name=name;
+}
+
+const Person = new User('Mosh');
+Person.name
+```
+ How is JS used in the mirth environment? Does it have a JS engine within it? Wonder what Vue is then?
