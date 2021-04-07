@@ -4,8 +4,9 @@ let sentence = 'Jesus saves but the law condemns'; //string literal
 let age = 30; //number literal
 let isIntelligent = true; //boolean literal
 let mysteryVariable; // type can't be defined. Therefore undefined type.
-console.log(sentence); //Way to output the message on the node console. Similar to print function in many other languages. This message did not appear on the web page because it appears inside the console of the webpage
-//alert(sentence); //produces a message name on the browser. 
+console.log(sentence); //Way to output the message on the node console. Similar to print function in many other languages. 
+// This message did not appear on the web page because it appears inside the console of the webpage
+//alert(sentence); //produces a message directly on the browser. 
 
 // Explaining the concept of null variables
 let blankVariable = null; // undefined but blank value. It can be assigned in the future to any type.
@@ -22,7 +23,8 @@ console.log(typeof(age)) // see age, though initially a number, can now become a
 //2. Arrays (stores a list of values) and 
 //3. Functions
 
-//Objects: indicated by the use of {}. I suppose there is no class definition as in R, Python and C++. There could be but an object definition made to be as easy and flexible as possible
+//Objects: indicated by the use of {}. I suppose there is no class definition as in R, Python and C++. 
+// There could be but an object definition made to be as easy and flexible as possible
 let Person = {
     firstName : 'Annamalai', // note variable values are assigned by :
     middleName : null,
@@ -50,7 +52,8 @@ colorsILike = ['Blue', 'Brown'];
 console.log(colorsILike[0])
 //Dynamic property of JS is indeed powerful: Array can be expanded to store more values as well as different types of values anytime. 
 colorsILike[4] = 5;
-console.log(colorsILike) // note JS even allows you to skip locations to store values. JS dynamically makes arrays to be as accomodative as possible without throwing up errors.
+console.log(colorsILike) // note JS even allows you to skip locations to store values. 
+//JS dynamically makes arrays to be as accomodative as possible without throwing up errors.
 
 //Array Part 2: properties
 // Arrays are objects.
@@ -59,9 +62,11 @@ console.log(typeof(colorsILike)); // proof
 console.log(colorsILike.length); //length is a property/function within the array that calculates its length
 
 // Functions 
-// A function sometimes has input parameters (e.g. firstName and lastName in the example below) & output parameters (e.g. greetings in the example below)
+// A function sometimes has input parameters (e.g. firstName and lastName in the example below) 
+// & output parameters (e.g. greetings in the example below)
 function greet (firstName, lastName) {
-    greetings = 'Hello' +  ' ' + firstName + ' ' + lastName // Generating a greeting message by concatenating the words with space in between them
+    // Generating a greeting message by concatenating the words with space in between them
+    greetings = 'Hello' +  ' ' + firstName + ' ' + lastName 
     return greetings; // return the greetings as the output of this function 
 } // function defintion is the only variable definition that does not end with ;
 console.log(greet('Annamalai', 'Muthiah')) // calling the function and printing the result of the function on the console 
@@ -72,7 +77,8 @@ console.log(greet('Annamalai', 'Muthiah')) // calling the function and printing 
 
 // Arithmetic operators - addition, substraction, multiplication, division, 
 // remainder (indicated by symbol %),  exponent operator (indicated by symbol '**'), increment and decrement 
-// The first 5 are fairly straightforward. However the exponenet, incremenet and decrement operators operate unsually which I wanted to highlight.
+// The first 5 are fairly straightforward. However the exponenet, incremenet and decrement operators operate unsually
+//  which I wanted to highlight.
 let x=10; 
 let y=3;
 //Exponent
@@ -116,7 +122,8 @@ console.log(numberType); // output is 'odd' because x = 5
 
 // If the console is crowded and you want to clear your JS console, input ctrl+L
 
-// Logical operators - Logical AND(&&), OR(||) and NOT(!). These operators operate on boolean values (true or false). These operations are useful for decision making 
+// Logical operators - Logical AND(&&), OR(||) and NOT(!). These operators operate on boolean values (true or false). 
+// These operations are useful for decision making 
 // Logical AND takes boolean inputs and if all of the are true, its output is true
 // Logical OR takes boolean inputs and if atleast one of them is true, its output is true
 technicalChallengePassed = true
@@ -143,16 +150,18 @@ interview = 'Yes'
 salaryRangeTest = 'No'
 console.log('Hired: ' + ((technicalChallenge && interview) || salaryRangeTest))
 
-// Bit-wise operator converts numbers to their respective bit positions and conducts logical operation on each of those bits (or is represented by symbol | and and is represented by &)
+// Bit-wise operator converts numbers to their respective bit positions and conducts logical operation on each of those bits 
+// (or is represented by symbol | and and is represented by &)
 // This could be extremely useful to assign read, write and execute permissions on files
-const readPermission = 1 // In other words, converted to bits 1 = 00000001 and it is a constant. Therefore, a permenant standard
+const readPermission = 1 // converted to bits 1 = 00000001 and it is a constant. Therefore, a permanent standard
 const writePermission = 2 // 2 = 00000010 
 const executePermission = 4 // 4 = 00000100
 // If the user is to be assigned more than one previlege, it is done in the following way:
 ordinaryUserPermission = readPermission
 strongUserPermission = readPermission|writePermission // (3 = 00000011)
 superUserPermission = readPermission|writePermission|executePermission //(7= 00000111)
-// now you can ask the question, is a strong user permitted to execute a file? Then logical 'and' operation is conducted on each of the bits between execute persmission and user permission. 
+// now you can ask the question, is a strong user permitted to execute a file? Then logical 'and' operation is conducted on each of 
+// the bits between execute persmission and user permission. 
 permission = (strongUserPermission & executePermission)?'yes':'no'
 console.log(permission);
 
@@ -170,7 +179,8 @@ console.log(b);
 
 // ************************************************************************ Conditional Statements ***************************************************************
 
-// Standard if-else statement. The excellent thing about ifelse syntax in JS is that it does not mandate an else statement if you don't want one.
+// Standard if-else statement. The excellent thing about ifelse syntax in JS is that it does not mandate an else statement 
+// if you don't want one.
 msg= 'good evening';
 time = 1900
 if (time >= 600 && time < 1200) {
@@ -211,7 +221,8 @@ while (i<=100) {
     i++;
 }
 
-//do-while loop: it is different from while loop in that the code chunk is executed atleast once before the condition at the end (i<=100) is checked.
+//do-while loop: it is different from while loop in that the code chunk is executed 
+//atleast once before the condition at the end (i<=100) is checked.
 i=1;
 do {
     if (i%2 !== 0) console.log(i);
@@ -262,7 +273,8 @@ for (let i=0; i<=10; i++){
     console.log(i);
 }
 
-//Usage of 'continue' is programming is discouraged. It disrupts the flow of a loop and sends the loop back to to the next iteration skipping any code in between.
+//Usage of 'continue' is programming is discouraged. It disrupts the flow of a loop and sends the loop back to to the next iteration 
+// skipping any code in between.
 i=0
 while (i<=10) {
 if (i%2 == 0) {
@@ -314,7 +326,8 @@ const demeritPoints = Math.floor(speed-speedLimit)/kmPerPoint;  //this special f
 //demeritPoints is a constant because you don't want it to be raised or lowered later. 
 if (demeritPoints >= maxDemeritPoints) return 'Your license has been suspended';
 else return ('You have earned '+ demeritPoints +' demerit points. Slow your speed down to less than 70'); 
-// + always works to construct a string. ',' works to build a string only in console. While in '+', you have to leave space, in console, ',' naturally leaves space between the strings being concatenated.
+// + always works to construct a string. ',' works to build a string only in console. While in '+', you have to leave space, 
+//in console, ',' naturally leaves space between the strings being concatenated.
 }
 }
 }
@@ -447,7 +460,8 @@ function checkPrime(number){
 
 
 // *****************************************************Objects *****************************
-// objects are collection of key-value pairs. The properties of objects are keys of the objects and their respective values and they are usually related.
+// objects are collection of key-value pairs. The properties of objects are keys of the objects and their respective values 
+// and they are usually related.
 // Building an app for drawing shapes
 // object called circle. Its properties are radius, x and y coordinates
 let circle = { // An object could also hold another object or function or an array inside itself.
@@ -669,7 +683,8 @@ console.log(message.includes("my") + '\n' + //true. checks if a certain string i
 
 // Template literal
 // String primitives are not good with string formatting.
-// There are a few literals we have encountered so far - Object {}, String ("", ''), Boolean (true/false) and  Template Literals achieved by ``.
+// There are a few literals we have encountered so far - Object {}, String ("", ''), Boolean (true/false) and  
+// Template Literals achieved by ``.
 let newMessage = 
 'This is my\n' +
 '\'first\' message'; 
