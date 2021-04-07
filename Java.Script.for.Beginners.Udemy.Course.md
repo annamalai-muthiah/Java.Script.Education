@@ -2,8 +2,9 @@
   <h2>"Annamalai Muthiah" </h2>
     <h3>"04/06/2021" </h3>
 
-
-
+  
+    
+ 
 
 ### Acknowledgement 
 My primary source for this "Ready Reference for Java Script Programming Basics Part 1" document is the Udemy Course titled "JavaScript - Master the Fundamentals in 6 Hours" by Mosh Hamedani. https://www.udemy.com/course/javascript-basics-for-beginners/
