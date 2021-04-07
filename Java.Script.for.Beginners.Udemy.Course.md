@@ -1,11 +1,7 @@
----
-title: "Ready Reference for Java Script Programming Basics Part 1"
-author: "Annamalai Muthiah"
-date: "04/06/2021"
-output: 
-  html_document:
-    keep_md: yes
----
+<h1> Ready Reference for Java Script Programming Basics Part 1 </h1>
+  <h2>"Annamalai Muthiah" </h2>
+    <h3>"04/06/2021" </h3>
+
 
 
 
