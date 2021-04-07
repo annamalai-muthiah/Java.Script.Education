@@ -1,6 +1,6 @@
 <h1> Ready Reference for Java Script Programming Basics Part 1 </h1>
-  <h2>"Annamalai Muthiah" </h2>
-    <h3>"04/06/2021" </h3>
+  <h2> Annamalai Muthiah (04/06/2021) </h2>
+   
 
   
     
