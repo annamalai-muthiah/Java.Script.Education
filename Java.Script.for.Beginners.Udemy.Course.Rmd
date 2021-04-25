@@ -818,7 +818,7 @@ let circle1 = createCircleObject(5, "origin");
 let circle2 = new CircleObject(2);
 
 // constructor property
-console.log(circle1.constructor);//circle1 was created using built-in JavaScript method of object definition,that is, 
+console.log(circle1.constructor);//circle1 was created using built-in JavaScript method of object definition,that is,
 //using {} (object literal definition). Objects created using {} use the built-in constructor function 'Object()'.
 //when using let x={}, what happens under the hood is let x = new Object ().
 // Other constructor functions in JS: new String(), new Number(), new Boolean(). Notice the caps keeping up with the Pascal notation.
@@ -1805,14 +1805,15 @@ console.log(jog.distance);
 
 Functions in Javascript are <b> dynamic </b>. 
 1. Properties to a function can be added after the function's declaration 
-2. The number of arguments that can be passed to a function is not strictly defined. In practice, you can pass any number of arguments to a function. This property could be advantageous in situations where the number of arguments 
-is not properly known beforehand. <b> The arguments to a function get stored inside the property called "arguments" of the function object.</b>. Therefore, the current set of arguments passed to a function can be accessed through there. 
+2. The number of arguments that can be passed to a function is not strictly defined. In practice, you can pass any number of arguments to a function. This property could be advantageous in situations where the number of arguments is not properly known beforehand. <b> The arguments to a function get stored inside the property called "arguments" of the function object.</b>. Therefore, the current set of arguments passed to a function can be accessed through there. 
 
 If you want to know what the elements of an object are and their values, you can cycle through them through the object property/method iterator in a loop.
 
 ```{node}
 let sumOfElements= function (){
-//console.log(arguments); // arguments is an object (an object within an object) that store values of arguments as properties of an object that can be accessed by indices.
+console.log(arguments); 
+// arguments is an object (an object within an object) that store values of arguments as properties of an object that can be accessed by indices.
+// You don't need a special "this." to access property like inside an object.
 
 let total = 0;
 
@@ -1826,7 +1827,7 @@ console.log(sumOfElements(2, 2, -2, -1, 34, 'a'));
 ```
 
 ### 17.2  REST operator (...) in the context of functions 
-REST operator looks exactly the same as SPREAD operator. It packs arguments as an array. A few points to note:  
+REST operator looks exactly the same as SPREAD operator. It packs arguments of a function as an array. A few points to note:  
 <b> 
 1. REST operator does the inverse of SPREAD operator - one packs the values in an array while the others breaks open and releases the values
 2. If used with other arguments, rest should be the last formal argument of the function</b>.
@@ -1860,3 +1861,394 @@ let interestCalculator = function (principal, rate, years){
 
 console.log(interestCalculator(5000,'', ''));
 ```
+
+3. Default values for function parameters/arguments can be assigned during function declaration/definition. <b> If a parameter has been assigned a default value in the function declaration, all parameters following it should also be assigned default values</b>.
+
+```{node}
+let interestCalculator = (principal, rate = 2.5, year = 5) => principal*rate/100*year; //this is short-cut syntax for function declaration
+
+console.log("**************************using default values for rate and year")
+console.log(interestCalculator(10000));
+
+console.log("**************************using default value only for year")
+console.log(interestCalculator(10000, 5));
+
+console.log("**************************using default value for none")
+console.log(interestCalculator(10000, 2, 10));
+```
+
+### 17.4 Getters and Setters
+<b> GETTER function </b> is set-up to get values of different properties inside an object as a composite property value.
+<b> SETTER function </b> is for setting values of multiple properties through a composite property than individually supplying them.
+GETTER & SETTER functions are useful for getting and setting values of interconnected variables without specifying the value for each one of them.
+<b> Once a method/property has a get prefix (GETTER function) in-front of it, its values can only be set if it has a corresponding SETTER function.</b> 
+```{node}
+let Person = {
+  firstName: 'Annamalai',
+  lastName: 'Muthiah'
+};
+
+console.log ("***************************Output regarding manually changing value of an object's property *************************")
+console.log(Person);
+//I want to change the first name of the person
+Person.firstName = 'Raam';
+console.log(Person);// it does get modified.
+//However, by this approach, if you want to alter multiple properties of an object, you will have to access them one-by-one.
+
+console.log ("\n************************** Accessing values of multiple object properties *****************************************")
+console.log(Person.firstName+' '+Person.lastName);
+console.log(`${Person.firstName} ${Person.lastName}`); //using template literal to print full name
+// The above would be a hard expression to repeat in multiple places 
+// Instead it would be a better to create a method inside an object to combine different property values and output them conveniently. 
+
+console.log ("\n************************** Alternate method (Method 1) to access values of multiple object properties **************")
+Person = {
+firstName: 'Annamalai',
+lastName: 'Muthiah',
+fullName (){ // we are using one of the method definition shortcuts inside an object we saw before
+  return`${this.firstName} ${this.lastName}`;
+}  
+}
+
+Person.firstName = 'Mosh';
+console.log(Person.fullName());
+
+console.log ("\n**************Alternate method (Method 2: using getters and setters method) to access and to set values of multiple object properties")
+Person = {
+  firstName:'Annamalai',
+  lastName: 'Muthiah',
+  get fullName (){ //get is for getting value of a composite property
+    return `${this.firstName} ${this.lastName}`;  
+  },
+  set fullName (value){ //set is for setting values of properties. Its ok if a setter function shares the same name as the getter function
+    let parts = value.split(" ");
+    this.firstName = parts[0];
+    this.lastName = parts[1]; // no return value. return is not mandatory for a function
+  }
+};
+
+Person.firstName= 'Mosh';
+console.log(Person.fullName); //because of get, you can access functions like properties
+// setter to set property values (you can use the same method name or a different one)
+Person.fullName = "Leanna Muthiah"; //property value becomes setter function argument
+console.log(Person.firstName);
+console.log(Person.lastName);
+console.log(Person);
+// The main contribution of getter/setter is that it can affect multiple object properties and can serve both as a method and property. 
+```
+
+### 17.5 Error handlers in Javascript - try and catch
+console.error is a better tool than console.log to indicate error because console.error message has a red appearance indicating error as opposed to regular console message.
+<b> try allows you to test a block of code for errors without disrupting the execution of rest of the program. </b>
+```{node}
+let Person = {
+  firstName:'Annamalai',
+  lastName: 'Muthiah',
+  get fullName (){ 
+    return `${this.firstName} ${this.lastName}`;  
+  },
+  set fullName (value){ 
+    let parts = value.split(" ");
+    this.firstName = parts[0];
+    this.lastName = parts[1];
+  }
+};
+
+Person.fullName = true; //results in error because split is not a defined method within a boolean value and it also disrupts the execution of other lines below it
+console.log(Person.firstName);
+```
+
+Defensive programming is to account for all the different error types. Error handling should be done at the beginning of the function or method so that we can  
+ensure values are right type and shape before we execute the function. Here is an example of how to avoid error disruption in the above example. <b> I suppose user inputs should always be checked for the right type. </b> 
+```{node}
+let Person = {
+  firstName:'Annamalai',
+  lastName: 'Muthiah',
+  get fullName (){ 
+    return `${this.firstName} ${this.lastName}`;  
+  },
+  set fullName (value){
+    if (typeof(value) !== 'string') return; // exits the function
+    let parts = value.split(" ");
+    this.firstName = parts[0];
+    this.lastName = parts[1];
+  }
+};
+
+Person.fullName = true; 
+console.log(Person.firstName);
+```
+
+<b> There is a more formal way to conduct defensive programming: using try and catch method. Throwing an exception is an optional part of that process. </b>
+Throwing an error/exception using <b> throw new Error ('error message') </b> is a way to create an error message. This can replace the return step in the above code fragment because the program control naturally exits the function at that stage. <b> It will take all the errors messages from the execution including the error object thrown by the throw message and packs into the error object, e, which is caught by the catch code block </b>. 
+
+<b> The excellent aspect of try-catch block (more precisely, throw-try-catch block) is that it neatly collects all the errors encountered while executing the try block without disrupting the execution of other parts of the program - whether you throw an exception or not.</b> This is particularly handy when you don't know all the potential output of a code fragment but you don't want it to affect the execution of other parts of the program. 
+```{node}
+let Person = {
+  firstName : 'Annamalai',
+  lastName : 'Muthiah',
+  get fullName (){
+    return `${this.firstName} ${this.lastName}`;
+  },
+  set fullName (value){
+    
+    if (typeof(value) !== "string")
+      throw new Error ("Value is not a string. This message is displayed by throwing an exception"); // a new error object by constructor function "Error"
+    
+    let parts = value.split(' ');
+    
+    if (parts.length !==2)
+      throw new Error ("The string does not have two parts");
+    
+    this.firstName = parts[0];
+    this.lastName = parts[1];
+  }
+}
+
+// try and catch block
+try{
+  Person.fullName = true;
+}
+catch(e){
+  //console.log(e); //catches the error object as well console error messages
+}
+
+console.log("\n\n\n");
+console.log(Person.firstName, Person.fullName);
+```
+
+## 18 Variable Scope (Local vs Global)
+<b> Any variable defined within a code block is available only inside that code block. This is called local scope.</b> 
+A code block is represented by {}. Code blocks include functions, if-else blocks and loops (the counter i is only available inside the loop). 
+```{node}
+{
+  let x= 5;
+}
+console.log(x); // x is outside the scope.
+```
+<b> Avoid using global variables as they are susceptible to change and may result in bugs when used later. </b>
+Also local block variables take precedence over global variables, variables that are outside of any block. 
+
+```{node}
+const col = "blue";
+
+function colorfn () {
+  const col = "red";
+  console.log(col); // it will display red and not blue because local variables take precedence over global variables.
+}
+
+colorfn();
+```
+
+Global variables are constantly susceptible to change and the below fragment illustrates it.
+```{node}
+function start (){
+  comrade = "David";
+  console.log(comrade);
+}
+
+function stop (){
+  console.log(comrade);
+}
+
+let comrade = "Michael";
+start();
+stop();
+```
+
+### 18.1 Let vs Var
+In most languages, scopes of variables are restricted to code blocks where the variables are defined. This is how let and const variable definitions work in Javascript as well. var variables in JS are < b> slightly different </b> because they are scoped within functions (not blocks) but are accessible outside blocks within the same function. <b> This was an anomaly </b> compared to other languages that was then solved by let and const.
+```{node}
+
+// Example 1
+{
+  var x= 5;
+}
+console.log(x); // x is outside the scope but defining a variable using var allows it be accessed outside the block.
+
+// Example 2 - same concept with both var and let
+console.log("******************************variable defined using let and accessed outside the block")
+function printCl(){
+  if (true){
+  let color='blue';
+  }
+  console.log(color);
+}
+try{
+printCl();
+}
+catch(e){};
+
+console.log("\n******************************variable defined using var and accessed outside the block")
+function printCl1(){
+  if(true){
+  var color = 'red';
+  }
+  console.log(color);
+}
+try{
+printCl1();
+}
+catch(e){};
+```
+
+<b> Another anomaly/complication that can result from using var for variable definition </b> is that global variables defined by var attaches itself to window object. "window.var" will get that value that can potentially conflict with other global variables. "Let" does not allow this to happen. As a good practice, the different variables in JavaScript (JS) -functions, objects, primitives etc., should be present within modules to prevent it from attaching to the global window object.
+
+## 19. "this" keyword
+1. <b> If a method uses "this" </b>, it refers to the current object that encompasses the method.  
+2. <b> If a general function, that is outside any object, used "this" </b>, it would refer to the global window object. 
+3. <b> If "this" is used inside a constructor function </b>, it would point to the object being created by the constructor function. The constructor function itself won't be part of the object as a method after it gets created.
+4. <b> If "this" is used in a callback function </b>, it will refer to the window object because it is a fully defined function on its own and will behave as any independent function would, like referring to the window object. 
+```{node}
+let video = {
+  title: 'a',
+  play(){
+  this.ratings = 5; //'this' refers to the object video
+  }
+};
+video.stop = function (){
+  console.log(this);//'this' refers to the object video
+  };
+
+console.log("************Using THIS inside functions play() and stop() that are inside an object")
+video.play();
+video.stop();
+
+console.log("\n************Using THIS inside function playVideo() that is outside any object")
+function playVideo(){
+console.log(this); //'this' refers to the global object, window
+}
+//playVideo(); 
+console.log("I did not display because the output is horridly long");
+
+console.log("\n ************Using THIS inside a constructor function")
+let title = "Roja";
+let ratings = 10;
+let videoSample  = new Video (title, ratings);
+videoSample.display();
+console.log(videoSample.constructor, videoSample.title);
+function Video (title, ratings) {
+  this.title = title;
+  this.ratings = ratings;
+  this.display = function() {
+    console.log(this);
+  };
+}
+
+console.log("\n ***************** Using THIS in a callback function or any function to refer to specific objects")
+console.log("Method 1: 'This' object for a callback function passed as `thisarg` argument")
+video = {
+  title: 'general',
+  tags: ['a', 'b', 'c'],
+  play() {
+    console.log("title", "  tag");
+    this.tags.forEach(tag => {
+      console.log(this.title+"\t"+tag);
+    }, this) //thisarg = this. This is the only way to pass because forEach will only take additional arguments that are either indices and/or arrays. The code also works without thisarg = this. thisarg means something that can be referred to by 'this'.
+  }
+};
+video.play();
+console.log("Method 2: Using call, apply and bind methods to bind 'This' object/any object to a function")
+// Unless bound to a specific object, "this" in a free function  will refer to the window object and not itself, the function object
+function playVideo (a,b){
+  console.log(this, a+b);
+}
+console.log("\nCall and Apply Method: Same effect but different syntax")
+playVideo.call({name: 'Annamalai'},1,2) // first argument gets passed as value of this into the function
+playVideo.apply({name: 'Muthiah'}, [1,2]) // same effect. Slightly different syntax
+
+console.log("\nBind Method: Main difference is that bind binds an object permanently and returns a function")
+// The usual syntax of bind is as follows
+let playVideoBound = playVideo.bind({name:'Annamalai Muthiah, PhD'}); //binds an object permanently to a function and returns a new function
+playVideoBound(3,5); // will now always point to the object {name:'Annamalai Muthiah, PhD'}
+//If you do not want an object to be permenantly bound, you can call the function implicitly 
+playVideo.bind({firstName:'Annamalai'})(1,2);
+
+console.log("\n Using the Bind method to pass an object to a callback function inside an object (see Method 1)")
+video = {
+  title: 'general',
+  tags: ['a', 'b', 'c'],
+  play() {
+    console.log("title\ttags");
+    this.tags.forEach((tag => {
+      console.log(this.title + "\t" + tag);
+    }).bind(this));
+     }
+};
+video.play();
+```
+
+### 19.1 Arrow operator, Callback function and THIS 
+<b> Starting in ES6, you can pass the parent object to THIS inside a callback function using the arrow function.</b>  
+Arrow function inherits THIS from the containing function.
+```{node}
+video = {
+  title : 'general title',
+  tagstoTitle : ['a', 'b', 'c'],
+  play(){
+   this.tagstoTitle.forEach(tag => {
+     console.log(this.title, "\t", tag);
+   });
+  }
+};
+
+video.play();
+```
+
+### 20. Few exercises on Functions
+```{node functionsExercises}
+
+//Ex.1
+console.log("Ex.1.Sum of arguments of a function");
+//Arguments could be a regular list of numbers or an array of numbers
+
+function sumOfArguments(...args) { 
+  //Rest operator (...) works only in the context of arguments of a function as a rest operator to pack chosen arguments into an array.
+  //Similarly, spread operator (...) is useless outside the context of an array [] or an object {}.
+  if (args.length === 1 && Array.isArray(args[0])) //isArray only available as Array.isArray function. typeof(array) = object. So it would not work.
+  //The reason this is there because people can not be trusted to enter the arguments as just numbers and may mistakenly enter an array instead.
+      args = [...args[0]]; //flatten the array element.
+      
+  return args.reduce((total,value) => total+value);    
+}
+
+console.log(sumOfArguments(1,2,3,4));
+console.log(sumOfArguments([1,2,3,4,5,6,7])); 
+
+//Ex.2
+console.log("\nEx.2.Area of circle using GETTER function")
+let circle = {
+  radius : 4,
+  get area () {
+    return (Math.PI)*this.radius*this.radius;
+  }
+};
+
+console.log(circle.area);
+
+//Ex.3
+console.log("\nEx.3.Usage of throw-try-catch block to help handle unexpected errors from a program block")
+function countOccurence (array, number) {
+  console.log(number);// absence of argument being passed leads to undefined value for the argument.
+  if (!Array.isArray(array))
+    throw new Error("First input must be an array"); //throwing an exception
+  
+  return array.reduce((count,value) => {
+    if (value === number) count++;
+    return count;
+  },0);
+}
+
+arrayValue = [1,2, 45, 45, 55];
+numberValue = 45;
+try {
+console.log(countOccurence (arrayValue,numberValue));  
+}
+catch (e) {
+  console.log(e.message);
+};
+
+```
+
+
+
