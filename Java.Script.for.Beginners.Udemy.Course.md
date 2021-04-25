@@ -1,13 +1,10 @@
----
-title: "Ready Reference for Java Script Programming Basics Part 1"
-author: "Annamalai Muthiah"
-date: "04/06/2021"
-output: 
-  html_document:
-    keep_md: yes
----
+<h1> Ready Reference for Java Script Programming Basics Part 1 </h1>
+  <h2> Annamalai Muthiah (04/06/2021) </h2>
+   
 
-
+  
+    
+ 
 
 ### Acknowledgement 
 My primary source for this "Ready Reference for Java Script Programming Basics Part 1" document is the Udemy Course titled "JavaScript - Master the Fundamentals in 6 Hours" by Mosh Hamedani. https://www.udemy.com/course/javascript-basics-for-beginners/
